@@ -1,0 +1,69 @@
+.fancy-border {
+    border-style: dashed;
+    border-color: orange;
+    line-height: 2.0;
+    font-size: 18px;
+}
+
+div {
+  /* The code that you need to copy */
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+}
+
+#textterm {
+    font-family:    'courier', monospace;
+    background:     #000000;
+
+    resize:         both;
+    overflow:       auto;
+    margin:         2px;
+    padding:        10px;
+    word-wrap:      break-word;
+}
+
+.textterm-normal-prompt {
+    color:          #4AF626;
+    font-weight:    normal;
+}
+
+.textterm-white-space-pre {
+    white-space: pre;
+}
+.textterm-white-space-normal {
+    white-space: normal;
+}
+
+.textterm-error-prompt {
+    color:          red;
+    font-weight:    bold;
+}
+
+/**
+* The input span where the input happens.
+* Also applied to the previous inputs made in the current session.
+*/
+#textterm .textterm-input {
+    
+    height:         1em;
+    min-width:      1em;
+    outline-color:  transparent;
+    border:         none;
+    display:        inline-block;
+}
+
+#textterm p {
+    margin:         0;
+    padding:        0;
+}
+
+.nav div {
+    display:block;
+    float:left;
+    width:20%;
+    padding:0px;
+    margin:0px;
+    overflow:hidden
+}

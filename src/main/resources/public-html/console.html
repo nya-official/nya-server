@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>nya</title>
+    <link rel="stylesheet" href="console.css">
+    <link rel="icon" href="/favicon.ico?">
+</head>
+<body style="background-color:#000000;">
+
+<div id="textterm" class="textterm-pane">
+    <span class="textterm-pair">
+        <span class="textterm-prompt"></span>
+        <span contenteditable="true" class="textterm-input"></span>
+    </span>
+</div>
+<h3 id="app-done"></h3>
+
+<script src="textterm/textterm.js"></script>
+<script>
+    var textTerm = createTextTerm(document.getElementById("textterm"));
+    textTerm.setLogLevelTrace();
+    textTerm.onDispose = function(resultData) {
+        console.log("Calling onDispose..");
+        var message = "You can now close this window.";
+        if(resultData) {
+            message = resultData + " " + message;
+        }
+        document.getElementById("app-done").textContent = message;
+        textTerm.terminate();
+    }
+    textTerm.onAbort = function() {
+        console.log("Calling onAbort...");
+        document.getElementById("app-done").textContent = "Program aborted by user. You can now close this window.";
+        textTerm.terminate();
+    }
+    textTerm.settings.paneBackgroundColor = "#000000";
+    textTerm.settings.promptColor = "#4AF626";
+    textTerm.settings.inputColor = "#4AF626";
+    textTerm.execute("Thanks for using nya!\n");
+</script>
+
+</body>
+</html>
