@@ -5,6 +5,8 @@
  */
 package channel;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Date: 2021-06-17
  * Place: Zwingenberg, Germany
@@ -12,8 +14,11 @@ package channel;
  */
 public class Subscriber {
 
+    @Expose
     private String id; // id of the user
+    @Expose
     private SubscriberRole role = SubscriberRole.participant;
+    @Expose
     private NotificationType notificationType = NotificationType.normal;
 
     

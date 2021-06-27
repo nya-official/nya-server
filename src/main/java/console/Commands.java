@@ -5,12 +5,14 @@
  */
 package console;
 
+import console.commands.CommandCd;
 import console.commands.CommandClr;
+import console.commands.CommandEcho;
 import console.commands.CommandHelp;
 import console.commands.CommandJoin;
 import console.commands.CommandLogin;
 import console.commands.CommandLs;
-import console.commands.CommandPing;
+import console.commands.CommandMkdir;
 import console.commands.CommandRegister;
 import console.commands.CommandTime;
 import console.commands.CommandWhoAmI;
@@ -31,13 +33,16 @@ public final class Commands {
 
     public Commands() {
         addCommand(new CommandClr());
+        addCommand(new CommandCd());
+        addCommand(new CommandEcho());
         addCommand(new CommandJoin());
         addCommand(new CommandHelp());
         addCommand(new CommandLogin());
         addCommand(new CommandLs());
+        addCommand(new CommandMkdir());
         addCommand(new CommandRegister());
         addCommand(new CommandTime());
-        addCommand(new CommandPing());
+        //addCommand(new CommandPing());
         addCommand(new CommandWhoAmI());
     }
     
@@ -69,7 +74,13 @@ public final class Commands {
         // go through all the available commands
         for(Command command : getCommandList()){
             if(command.isApplicable(commandTextLowerCase)){
-                return command.actionInternal(commandText, user, terminal, context);
+                String keywordUsed = command.getApplicableKeyword(commandTextLowerCase);
+                String commandLine = commandTextLowerCase.substring(keywordUsed.length()).trim();
+                if(commandLine == null){
+                    commandLine = "";
+                }
+                
+                return command.actionInternal(commandLine, user, terminal, context);
             }
         }
         

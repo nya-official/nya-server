@@ -57,7 +57,7 @@ public abstract class Command {
     public String getApplicableKeyword(String commandLowercase){
         for(String commandApplicable : getKeywords()){
             if(commandLowercase.startsWith(commandApplicable)){
-                return commandLowercase;
+                return commandApplicable;
             }
         }
         return null;
@@ -77,27 +77,5 @@ public abstract class Command {
         return getDescription();
     }
 
-//    /**
-//     * Post-processing for the DataExchange object
-//     * @param data
-//     * @param context
-//     * @param user 
-//     */
-//    private void processResult(DataExchange data, Context context, User user) {
-//        // no need to continue when this is null
-//        if(data == null || context == null){
-//            return;
-//        }
-//        // check the data
-//        if(data.getData().isEmpty()){
-//            return;
-//        }
-//        // write this data to the cookies
-//        for(String key : data.getData().keySet()){
-//            String value = data.getData().get(key);
-//            context.getResponse().cookie(key, value);
-//        }
-//        context.getResponse().send();
-//    }
     
 }

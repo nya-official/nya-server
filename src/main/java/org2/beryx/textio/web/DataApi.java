@@ -19,10 +19,12 @@ package org2.beryx.textio.web;
  * API for the data exchanged between browser and server.
  */
 public interface DataApi {
-    /** This method is called by the web component while polling for data */
+    /** This method is called by the web component while polling for data
+     * @return  */
     TextTerminalData getTextTerminalData();
 
-    /** This method is called by the web component to post the user input */
+    /** This method is called by the web component to post the user input
+     * @param input */
     void postUserInput(String input);
 
     /**

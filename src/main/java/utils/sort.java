@@ -1,11 +1,8 @@
 /*
- * Sorting functions
- *
- * Copyright (c) TripleCheck
- * License: Proprietary
- * http://triplecheck.tech
+ * Description: Sorting functions
+ * License: Apache-2.0
+ * Copyright: x-file.xyz
  */
-
 package utils;
 
 import java.util.Collections;
@@ -17,9 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Max Brito
- * @date 2020-07-16
- * @location Zwingenberg, Germany
+ * Date: 2020-07-16
+ * Place: Zwingenberg, Germany
+ * @author brito
  */
 public class sort {
 

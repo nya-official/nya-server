@@ -482,12 +482,13 @@ public class internet {
      * @param ipAddress 
      * @return  
      */
+    @SuppressWarnings("UseSpecificCatch")
     public static boolean sendPingRequest(String ipAddress){
         try {
             InetAddress target = InetAddress.getByName(ipAddress);
             System.out.println("Sending Ping Request to " + ipAddress);
             return target.isReachable(5000);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(internet.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;

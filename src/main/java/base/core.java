@@ -25,9 +25,11 @@ public class core {
     // definitions
     public static String 
         dbFolderUsers = "users",
+        dbFolderChannels = "chans",
         dbNameUsers = "users.db",
         dbUserJSON = "user.json",
         dbUsersJSON = "users.json",
+        dbChannelsJSON = "chans.json",
         dbUserKey = "c",
         dbUserPassword = "p",
         dateFormat = "yyyy-MM-dd'_'HH:mm:ss";
@@ -43,13 +45,17 @@ public class core {
     public static Config config;
     public static Genesis genesis;
     public static CoinManager coinManager = new CoinManager();
-    public static ChannelManager channelManager = new ChannelManager();
+    public static ChannelManager channelManager;
     public static Users users;
     public static ConnectIPFS ipfs;
     public static Commands commands = new Commands();
     
     public static String 
             version = "1.0.0";
+    
+    public static int 
+            lenghtMaxChannelName = 100, // max siz in name length for channels
+            maxMessagesPerDefault = 10_000;
 
     static void start() {
         // print the logo

@@ -1,20 +1,17 @@
 /*
- * Platform specific functions
- *
- * Copyright (c) TripleCheck
- * License: Proprietary
- * http://triplecheck.tech
+ * Description: Platform specific functions
+ * License: Apache-2.0
+ * Copyright: x-file.xyz
  */
-
 package utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
- * @author Max Brito
- * @date 2020-08-25
- * @location Zwingenberg, Germany
+ * Date: 2020-08-25
+ * Place: Zwingenberg, Germany
+ * @author brito
  */
 public class platform {
 

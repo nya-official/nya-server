@@ -27,12 +27,12 @@ public class CommandLogin extends Command{
 
     @Override
     public DataExchange action(String commandText, User user, TextTerminal<?> terminal) {
-        if(commandText.length() < ("login ".length() + 5)){
+        if(commandText.length() < (5)){
             Message.messageError(terminal, "Needs to be a bit bigger, thanks");
             return null;
         }
         // login brito 123456
-        String text = commandText.substring("login ".length());
+        String text = commandText;//.substring("login ".length());
         // break into two portions
         String[] item = text.split(" ");
         if(item.length != 2){
@@ -51,6 +51,13 @@ public class CommandLogin extends Command{
             Message.messageError(terminal, "Nope, that didn't work. Sorry! (⌣́_⌣̀)");
             return null;
         }
+        
+        // repeated login
+        if(userFound.getIdSHA1().equals(user.getIdSHA1())){
+            Message.message(terminal, "Hey, trying to log as yourself again? ^_^");
+            return null;
+        }
+        
         // got a user
         Message.message(terminal, "Hey, welcome back " + userFound.getId() + "! ^_^");
         

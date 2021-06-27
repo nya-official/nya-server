@@ -15,7 +15,6 @@
  */
 package console.demo;
 
-import com.sun.org.slf4j.internal.LoggerFactory;
 import org2.beryx.textio.web.TextIoApp;
 
 import java.awt.*;
@@ -25,8 +24,6 @@ import java.net.URISyntaxException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
-import org2.beryx.textio.web.RatpackTextIoApp;
-import org2.beryx.textio.web.WebTextTerminal;
 
 /**
  * Allows executing code in a {@link org.beryx.textio.web.WebTextTerminal}
@@ -51,20 +48,16 @@ public class WebTextIoExecutor {
                                  }, 2, TimeUnit.SECONDS);
 
             
-            
-            RatpackTextIoApp app2 = (RatpackTextIoApp) app;
-            //app2.withSessionDataProvider(null, null);
-            
-            
             app.withOnDispose(stopServer);
             app.withPort(port);
-            app.withMaxInactiveSeconds(600);
+            app.withMaxInactiveSeconds(6000);
             app.withStaticFilesLocation("public-html");
             app.init();
             
         }catch (Exception e){
         }
-        String url = "http://localhost:" + app.getPort() + "/console.html";
+        String url = "http://localhost:" + app.getPort();
+                //+ "/console.html";
         boolean browserStarted = false;
         if(Desktop.isDesktopSupported()) {
             try {

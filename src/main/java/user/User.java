@@ -14,6 +14,7 @@ import com.google.gson.annotations.Expose;
 import database.FolderSpecific;
 import java.io.File;
 import java.util.TreeSet;
+import static user.UserItem.getRootFolder;
 
 /**
  * Date: 2021-06-14
@@ -41,6 +42,9 @@ public class User {
         
         private String
             idIPFS = null;
+        
+        private UserItem
+            folderCurrent = null;
 
         @Expose
         private final TreeSet<String> 
@@ -51,11 +55,16 @@ public class User {
         @Expose
         private UserStatus 
             userStatus = UserStatus.active;
+        
+        @Expose
+        private final UserItem 
+                filesystem;
 
     public User() {
         // add the time creation
         dateCreation = System.currentTimeMillis();
         dateLastAccess = System.currentTimeMillis();
+        filesystem = UserItem.getRootFolder();
         // use english as default
         languages.add("en");
     }
@@ -135,6 +144,10 @@ public class User {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public UserItem getFilesystem() {
+        return filesystem;
     }
     
     /**
@@ -232,6 +245,18 @@ public class User {
         return this.idSHA1;
     }
     
+    public UserItem getFolderCurrent() {
+        if(folderCurrent == null){
+            folderCurrent = getRootFolder();
+        }
+        return folderCurrent;
+    }
+
+    public void setFolderCurrent(UserItem folderCurrent) {
+        this.folderCurrent = folderCurrent;
+    }
+
+    
     /**
      * Save this user profile to disk
      */
@@ -240,5 +265,35 @@ public class User {
         File file = FolderSpecific.getFile(core.dbFolderUsers, idSHA1, core.dbUserJSON);
         utils.files.SaveStringToFile(file, text);
     }
+
+    /**
+     * Finds a folder on the tree structure
+     * @param pathBelow
+     * @return null when nothing was found
+     */
+    public UserItem findFolder(String pathBelow) {
+        return User.this.findFolder(pathBelow, filesystem);
+    }
+
+    private UserItem findFolder(String pathBelow, UserItem itemFolder) {
+        for(UserItem item : itemFolder.getTree()){
+            // only accept folders
+            if(item.getItemType() != ItemType.folder){
+                continue;
+            }
+            // try to match the name
+            if(item.getPath().equalsIgnoreCase(pathBelow)){
+                return item;
+            }
+            // dive inside this folder
+            UserItem crawl = findFolder(pathBelow, item);
+            if(crawl != null){
+                return crawl;
+            }
+            
+        }
+        return null;
+    }
+
         
 }

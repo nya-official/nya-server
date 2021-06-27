@@ -16,8 +16,6 @@
 package console;
 
 import base.core;
-import io.netty.handler.codec.http.cookie.Cookie;
-import java.util.Set;
 import org2.beryx.textio.TextIO;
 import org2.beryx.textio.TextIoFactory;
 import org2.beryx.textio.TextTerminal;
@@ -46,7 +44,6 @@ public class BootStart implements BiConsumer<TextIO, RunnerData> {
         
         @SuppressWarnings("null")
         Context context = runnerData.getContext();
-        //context.getResponse().cookie(core.dbUserKey, "make-it-rye");
         
         String key = context.getRequest().oneCookie(core.dbUserKey);
         String password = context.getRequest().oneCookie(core.dbUserPassword);
@@ -68,6 +65,9 @@ public class BootStart implements BiConsumer<TextIO, RunnerData> {
             terminal.println("Welcome! Type \"help\" to get started");
         }
         
+        // reset the current folder
+        user.setFolderCurrent(user.getFilesystem());
+        
         terminal.println();
         terminal.setBookmark("MAIN");
         
@@ -75,10 +75,10 @@ public class BootStart implements BiConsumer<TextIO, RunnerData> {
         boolean continueLooping = true;
         while(continueLooping) {
             
-            String command = textIO.newStringInputReader()
-                //.withDefaultValue("/help")
-                .read(user.getId()
-                        + "@nya:~/$");
+            // generate the command prompt
+            String commandPrompt = generateCommandPrompt(user);
+            // wait for a command to be input
+            String command = textIO.newStringInputReader().read(commandPrompt);
             
             
             // try to process the command
@@ -89,7 +89,7 @@ public class BootStart implements BiConsumer<TextIO, RunnerData> {
             // put it in memory
             ConsoleWeb.addDataExchange(data, context);
             
-        delay(500);
+        //delay(500);
         }
     }
     
@@ -122,5 +122,20 @@ public class BootStart implements BiConsumer<TextIO, RunnerData> {
         // run it
         DataExchange data = core.commands.run(command, user, terminal, context);
         return data;
+    }
+
+    private String getFolder(User user) {
+        return user.getFolderCurrent().getPath();
+    }
+
+    private String generateCommandPrompt(User user) {
+        String commandPrompt = user.getId()
+                + "@nya:~";
+
+        if (getFolder(user).equalsIgnoreCase("/") == false) {
+            commandPrompt += getFolder(user);
+        }
+        commandPrompt += "$";
+        return commandPrompt;
     }
 }

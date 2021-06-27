@@ -5,8 +5,11 @@
  */
 package console.commands;
 
+import base.core;
+import channel.Channel;
 import console.Command;
 import console.DataExchange;
+import console.Message;
 import org2.beryx.textio.TextTerminal;
 import user.User;
 
@@ -24,8 +27,19 @@ public class CommandJoin extends Command{
 
     @Override
     public DataExchange action(String commandText, User user, TextTerminal<?> terminal) {
+        if(commandText.startsWith("#") == false){
+            Message.messageError(terminal, "Error, channels always start with \"#\" like #example");
+            return null;
+        }
+        // try to first find the channel in case it exists
+        Channel channel = core.channelManager.find(commandText);
+        // does not exist? Create a new one
+        if(channel == null){
+            // setup the logged user as admin, even if anon
+            channel = core.channelManager.create(user, commandText);
+        }
         
-        terminal.println(utils.time.getDateTimeISO());
+        Message.message(terminal, "Joined " + commandText);
         return null;
     }
 

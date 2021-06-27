@@ -17,7 +17,7 @@ package org2.beryx.textio.web;
 
 import console.ConsoleWeb;
 import console.CookieInternal;
-import io.netty.handler.codec.http.cookie.Cookie;
+import console.WebRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ratpack.func.Action;
@@ -111,6 +111,27 @@ public class RatpackDataServer extends AbstractDataServer<Context> {
                 });
             });
 
+    
+        protected final Action<Chain> handlerRoot = chain -> chain
+            .get(ctx -> {
+                ctx.render("Hello " + ctx.getPathTokens().get("name") + "!");
+            });
+    
+    
+        protected final Action<Chain> handlerPath = chain -> chain
+            .all(ctx
+//                    -> ctx.getResponse().status(202).send("foo")
+//            .get(":name", ctx
+                    -> {
+                //ctx.getResponse().status(200);
+                //ctx.render("Hello " + ctx.getPathTokens().get("name") + "!");
+                //ctx.render(ctx.getRequest().getRawUri());
+                WebRequest webRequest = new WebRequest(ctx);
+                webRequest.process();
+            }
+            );
+
+    
     protected final Action<Chain> handlerTexttermAssets =  chain ->
             chain.get("textterm/:name", ctx -> {
                 String resName = "/public-html/textterm/" + ctx.getPathTokens().get("name");
@@ -133,12 +154,12 @@ public class RatpackDataServer extends AbstractDataServer<Context> {
                 }
             });
 
-    private final List<Action<Chain>> handlers = new ArrayList<>(Arrays.asList(
-            handlerPostInit,
+    private final List<Action<Chain>> handlers = new ArrayList<>(Arrays.asList(handlerPostInit,
             handlerGetData,
             handlerPostInput,
             handlerTexttermAssets,
-            handlerStaticAssets
+            handlerStaticAssets,
+            handlerPath
     ));
 
     private final List<Action<BindingsSpec>> bindings = new ArrayList<>(Collections.singletonList(

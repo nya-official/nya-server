@@ -124,7 +124,7 @@ public class WebTextTerminal extends AbstractTextTerminal<WebTextTerminal> imple
         TerminalProperties<WebTextTerminal> props = copy.getProperties();
         List<TerminalProperties.ExtendedChangeListener<WebTextTerminal>> listeners = getProperties().getListeners();
         listeners.forEach(props::addListener);
-
+        
         copy.setTimeoutNotEmpty(this.timeoutNotEmpty);
         copy.setTimeoutHasAction(this.timeoutHasAction);
         copy.setUserInterruptKey(this.userInterruptKeyCode, this.userInterruptKeyCtrl, this.userInterruptKeyShift, this.userInterruptKeyAlt);

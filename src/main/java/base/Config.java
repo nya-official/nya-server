@@ -7,6 +7,7 @@ package base;
 
 import static base.core.dateFormat;
 import static base.core.fileGenesis;
+import channel.ChannelManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
@@ -72,6 +73,10 @@ public class Config {
         }
         // get it started
         core.users.start();
+        
+        // get channels up and running
+        core.channelManager = ChannelManager.loadFromDisk();
+        
     }
     
     public void setupTest(){

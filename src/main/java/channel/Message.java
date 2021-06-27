@@ -5,6 +5,7 @@
  */
 package channel;
 
+import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
 
 /**
@@ -14,18 +15,22 @@ import java.util.ArrayList;
  */
 public class Message {
 
+    @Expose
     private long 
         timeSent,   // when first dispatched
         timeRead;   // when first read by user or channel
     
+    @Expose
     private String 
         idFrom,     // channel or person
         idTo,       // channel or person
         content;    // x-file.xyz data format
     
+    @Expose
     private ArrayList<String> 
         tags = new ArrayList(); // message hidden/VIP other attributes
 
+    @Expose
     private ArrayList<Reaction> 
         reactions = new ArrayList(); // reaction from users
 

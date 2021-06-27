@@ -3,12 +3,105 @@
   "idSHA1": "d6b87d82dba316ef0228fd871d980a3df014e2ed",
   "password": "7c4a8d09ca3762af61e59520943dc26494f8941b",
   "userType": "normal",
-  "dateCreation": 1624348326672,
-  "dateLastAccess": 1624348326672,
+  "dateCreation": 1624784133556,
+  "dateLastAccess": 1624784133556,
+  "folderCurrent": {
+    "filename": "test",
+    "path": "/test",
+    "itemType": "folder",
+    "dateCreated": 1624789595640,
+    "dateLastModified": 1624789595640,
+    "tree": [
+      {
+        "filename": "1",
+        "path": "/test/1",
+        "itemType": "folder",
+        "dateCreated": 1624789602350,
+        "dateLastModified": 1624789602350,
+        "tree": []
+      },
+      {
+        "filename": "2",
+        "path": "/test/2",
+        "itemType": "folder",
+        "dateCreated": 1624804476630,
+        "dateLastModified": 1624804476630,
+        "tree": [
+          {
+            "filename": "abc",
+            "path": "/test/2/abc",
+            "itemType": "folder",
+            "dateCreated": 1624804481870,
+            "dateLastModified": 1624804481870,
+            "tree": []
+          }
+        ]
+      },
+      {
+        "filename": "3",
+        "path": "/test/3",
+        "itemType": "folder",
+        "dateCreated": 1624805045467,
+        "dateLastModified": 1624805045467,
+        "tree": []
+      }
+    ]
+  },
   "languages": [
     "en"
   ],
   "tags": [],
   "xpasswords": [],
-  "userStatus": "active"
+  "userStatus": "active",
+  "filesystem": {
+    "filename": "/",
+    "path": "",
+    "itemType": "folder",
+    "dateCreated": 1624784133556,
+    "dateLastModified": 1624784133556,
+    "tree": [
+      {
+        "filename": "test",
+        "path": "/test",
+        "itemType": "folder",
+        "dateCreated": 1624789595640,
+        "dateLastModified": 1624789595640,
+        "tree": [
+          {
+            "filename": "1",
+            "path": "/test/1",
+            "itemType": "folder",
+            "dateCreated": 1624789602350,
+            "dateLastModified": 1624789602350,
+            "tree": []
+          },
+          {
+            "filename": "2",
+            "path": "/test/2",
+            "itemType": "folder",
+            "dateCreated": 1624804476630,
+            "dateLastModified": 1624804476630,
+            "tree": [
+              {
+                "filename": "abc",
+                "path": "/test/2/abc",
+                "itemType": "folder",
+                "dateCreated": 1624804481870,
+                "dateLastModified": 1624804481870,
+                "tree": []
+              }
+            ]
+          },
+          {
+            "filename": "3",
+            "path": "/test/3",
+            "itemType": "folder",
+            "dateCreated": 1624805045467,
+            "dateLastModified": 1624805045467,
+            "tree": []
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -951,4 +951,18 @@ public class text {
         return line.substring(0, pos2);
     }
     
+    /**
+     * Removes all non A-Z and 0-9 chars except # . - and _
+     * @param input
+     * @return 
+     */
+    public static String onlyValidChars(String input) {
+        StringBuilder ret = new StringBuilder();
+        Matcher matches = Pattern.compile("[A-Z0-9a-z_-]").matcher(input);
+        while (matches.find()) {//find next match
+            ret.append(matches.group(0));
+        }
+        return ret.toString();
+    }
+    
 }

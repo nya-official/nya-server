@@ -28,12 +28,12 @@ public class CommandRegister extends Command{
 
     @Override
     public DataExchange action(String commandText, User user, TextTerminal<?> terminal) {
-        if(commandText.length() < (keyword.length() + 6)){
+        if(commandText.length() < (6)){
             Message.messageError(terminal, "Needs to be a bit bigger, thanks!");
             return null;
         }
         // login brito 123456
-        String text = commandText.substring(keyword.length());
+        String text = commandText;//.substring(keyword.length());
         // break into two portions
         String[] item = text.split(" ");
         if(item.length != 2){
