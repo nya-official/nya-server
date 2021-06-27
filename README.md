@@ -5,10 +5,12 @@ and simply having fun. Nya is an open source development.
 
 The main user interface is command-line based and permits for users to
 login/register, to send messages and follow the events across other channels
-(twitter, IRC, telegram, ...) from inside one single location.
-Another aspect is the possibility of renting your hardware in exchange for
-nya coins. Effectively giving a second life to any hardware available today.
+(twitter, IRC, telegram, ...) from inside one single location. Another aspect
+is the possibility of renting your hardware in exchange for nya coins.
 
+Effectively giving a second life to computer hardware available today.
+
+![nya](https://github.com/nya-official/nya-server/blob/main/media/screenshots/screencast-2021-06-27.gif?raw=true)
 
 Technology
 ----------
